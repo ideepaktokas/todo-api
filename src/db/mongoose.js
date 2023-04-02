@@ -8,7 +8,7 @@ export const connectDB = () => {
       autoIndex: true,
     })
     .then((c) => {
-      console.log(`MongoDB connected to host ${c.host}`);
+      console.log(`MongoDB connected to host ${c.connection.host}`);
     })
     .catch((error) => console.log(error));
 };
