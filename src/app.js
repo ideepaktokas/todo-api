@@ -1,12 +1,15 @@
 import express from 'express';
-import dotenv from 'dotenv';
-// require('./db/mongoose');
 import path from 'path';
+import dotenv from 'dotenv';
 
 dotenv.config();
 
-const app = express();
-const PORT = process.env.PORT;
+//importing routes
+import userRouter from './routers/userRouter.js';
+
+export const app = express();
+
+
 
 // using middlewares
 app.use(express.static(path.join(path.resolve(), "public")));
@@ -17,18 +20,12 @@ app.use(express.json());
 // app.set('view engine', 'ejs')
 
 // Register the routes
-// app.use(userRouter)
+app.use('/api/v1/users', userRouter);
 
 
 app.get('/', (req, res) => {
-    res.send('hello from ubuntu server');
-})
-
-
-
-app.listen(PORT, () => {
-    console.log(`Server start on port ${PORT}`);
-})
+    res.send('hello from ubuntu 22 server');
+});
 
 // app.get('/about', (req, res) => {
 //     res.render('about', {name: 'Ravi Tokas', 'partner' : 'Unibig'});
