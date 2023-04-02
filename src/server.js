@@ -7,5 +7,7 @@ connectDB();
 const PORT = process.env.PORT;
 
 app.listen(PORT, () => {
-    console.log(`Server start on port ${PORT}`);
+    console.log(`Server start on port ${PORT} in ${process.env.NODE_ENV} mode`);
 })
+
+// for readme.md we can use stackedit.io

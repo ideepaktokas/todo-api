@@ -60,7 +60,11 @@ export const register = async (req, res, next) => {
 export const logout = (req, res) => {
   return res
     .status(200)
-    .cookie("token", "", { expires: new Date(Date.now()) })
+    .cookie("token", "", {
+      expires: new Date(Date.now()),
+      sameSite: process.env.NODE_ENV === "development" ? "lax" : "none",
+      secure: process.env.NODE_ENV === "development" ? false : true,
+    })
     .json({
       success: true,
       message: "Logout success",

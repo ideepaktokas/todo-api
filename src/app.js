@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
+import cors from 'cors';
 import { errorMiddleware } from './middleware/error.js';
 
 dotenv.config();
@@ -10,17 +11,18 @@ dotenv.config();
 import userRouter from './routers/userRouter.js';
 import taskRouter from './routers/taskRouter.js';
 
-
-
 export const app = express();
-
-
 
 // using middlewares
 app.use(express.static(path.join(path.resolve(), "public")));
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors({
+    origin: [process.env.FRONTEND_URL],
+    methods:['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true,
+}));
 
 // Set JS engine
 // app.set('view engine', 'ejs')
