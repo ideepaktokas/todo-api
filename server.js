@@ -1,10 +1,10 @@
-import {app} from './app.js';
-import {connectDB} from './db/mongoose.js';
+import {app} from './src/app.js';
+import {connectDB} from './src/db/mongoose.js';
 
 
 connectDB();
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000
 
 app.listen(PORT, () => {
     console.log(`Server start on port ${PORT} in ${process.env.NODE_ENV} mode`);
